@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Header, Input, ToDos, Softkey } from "./components";
+import { Header, Input, Conversations, Softkey } from "./components";
 import { useNavigation } from "./hooks";
 
 export default function App() {
-  const [toDos, setToDo] = useState([]);
+  const [conversations, setConversation] = useState([]);
 
   const [current, setNavigation] = useNavigation();
 
@@ -13,14 +13,14 @@ export default function App() {
 
     const isATask = currentNavigationIndex > 0;
     if (isATask) {
-      setToDo(prevState => {
+      setConversation(prevState => {
         const current = [...prevState];
         current[currentNavigationIndex - 1].completed = !current[currentNavigationIndex - 1].completed;
         return current;
       });
     } else if (currentElement.value.length) {
-      const toDo = { name: currentElement.value, completed: false };
-      setToDo(prevState => [...prevState, toDo]);
+      const conversation = { name: currentElement.value, completed: false };
+      setConversation(prevState => [...prevState, conversation]);
       currentElement.value = "";
     }
   };
@@ -31,7 +31,7 @@ export default function App() {
       10
     );
     if (currentIndex > 0) {
-      setToDo(prevState => {
+      setConversation(prevState => {
         const current = [...prevState];
         current.splice(currentIndex - 1, 1);
         const goToPreviousElement = Boolean(current.length);
@@ -43,10 +43,10 @@ export default function App() {
 
   return (
     <>
-      <Header title="ToDo List" />
+      <Header title="Conversations" />
 
-      <Input type="text" label="New task" />
-      <ToDos toDos={toDos} />
+      <Input type="text" label="New Conversation" />
+      <Conversations conversations={conversations} />
 
       <Softkey
         center={current.type === "INPUT" ? "Insert" : "Toggle"}

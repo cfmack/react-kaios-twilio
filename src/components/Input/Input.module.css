@@ -45,11 +45,11 @@
 }
 
 .input input[nav-selected="true"] ~ label {
-  color: #9b27af;
+  color: #CC5500;
 }
 
 .input input[nav-selected="true"] {
   padding-bottom: 6px;
-  border-bottom: 2px solid #9b27af;
+  border-bottom: 2px solid #CC5500;
   text-shadow: 0 0 0 rgba(0, 0, 0, 1);
 }
