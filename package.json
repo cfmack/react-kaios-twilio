@@ -3,9 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1"
+    "@twilio/conversations": "^1.1.0",
+    "antd": "^4.8.0",
+    "dotenv": "^8.2.0",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "react-promise": "^3.0.2",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.0.1",
+    "twilio": "^3.50.0",
+    "twilio-chat": "^4.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
