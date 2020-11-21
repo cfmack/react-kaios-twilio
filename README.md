@@ -1,17 +1,11 @@
-# Sample React app for KaiOS
+# React app for KaiOS Twilio Integration
 
-Simple example of a to-do list, for more information see [KaiOS Developer Portal](https://developer.kaiostech.com/getting-started/build-your-first-app/sample-code#react)
 
-![](./docs/to-do-on-input.png)
-![](./docs/to-do.png)
+This was cloned from [KaiOS Developer Portal](https://developer.kaiostech.com/getting-started/build-your-first-app/sample-code#react) as well as some react Converation Demos. 
 
-In portrait devices
+Until this can be hosted, you need to copy .env-example and put in the appropriate twilio configs. 
 
-![](./docs/to-do-portrait.gif)
-
-In landscape devices
-
-![](./docs/to-do-landscape.gif)
+The main reason I am exploring this is that I got a flip phone and it does not support keeping track of multi-party conversations.  Instead it treats it like a bunch of single messages.   While I got away with using Google Voice, React and Twilio is proving to be fun.
 
 ## Start
 
