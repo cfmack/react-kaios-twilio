@@ -19,8 +19,7 @@ export default class App extends React.Component {
       statusString: null,
       conversationsReady: false,
       conversations: [],
-      selectedConversationSid: null,
-      newMessage: ""
+      selectedConversationSid: null
     };
 
     this.conversationsClient = null;

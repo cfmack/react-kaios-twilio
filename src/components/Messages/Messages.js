@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {Conversation} from "../Conversations/Conversation";
+import MessageBubble from "./MessageBubble";
+import MessageForm from "./MessageForm";
 
 export class Messages extends Component {
     constructor(props) {
@@ -7,12 +8,12 @@ export class Messages extends Component {
         this.selectedConversationSid = this.props.match.params.conversationSid;
         this.state = {
             messages: [],
+            value: '',
             conversation: null
         };
 
         this.filterConversation = this.filterConversation.bind(this);
         this.loadMessagesFor = this.loadMessagesFor.bind(this);
-
         this.filterConversation(this.selectedConversationSid, this.props.conversations)
     }
 
@@ -25,7 +26,6 @@ export class Messages extends Component {
     }
 
     loadMessagesFor = (thisConversation) => {
-        console.log(thisConversation.sid)
         if (this.state.conversation === thisConversation) {
             thisConversation.getMessages()
                 .then(paginator => {
@@ -50,7 +50,15 @@ export class Messages extends Component {
     renderMessages = function(messages) {
         let output = [];
         messages.map(m => {
-            output.push(<p>{m.state.body}</p>);
+            if (m.author === process.env.REACT_APP_TWILIO_DEFAULT_IDENTITY)
+            {
+                output.push(
+                    <MessageBubble key={m.index} direction="outgoing" message={m} />
+                );
+            }
+            else {
+                output.push(<MessageBubble key={m.index} direction="incoming" message={m} />);
+            }
             return output;
         })
 
@@ -60,8 +68,8 @@ export class Messages extends Component {
     render() {
         return (
             <div>
-                <h3>Id : {this.selectedConversationSid}</h3>
-                {this.renderMessages(this.state.messages)}
+                <ul id="message_list">{this.renderMessages(this.state.messages)}</ul>
+                <MessageForm conversation={this.state.conversation}/>
             </div>
         );
     }

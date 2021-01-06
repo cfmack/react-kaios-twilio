@@ -13,15 +13,20 @@ export class Conversation extends React.Component {
         };
     }
 
-    loadMessagesFor = (thisConversation) => {
+    loadParticipantsFor = (thisConversation) => {
         console.log(thisConversation.sid)
         if (this.state.conversation === thisConversation) {
-              thisConversation.getMessages()
-                  .then(paginator => {
-                      paginator.items.map(m => {
-                          if (!this.state.phoneNumbers.includes(m.state.author)) {
+              thisConversation.getParticipants()
+                  .then(participants => {
+                      participants.map(p => {
+                          let identifier = this.state.sid;
+                          if(p.state.attributes.hasOwnProperty('phoneNumber')) {
+                              identifier = p.state.attributes.phoneNumber;
+                          }
+
+                          if (!this.state.phoneNumbers.includes(identifier)) {
                               let tempNumbers = [...this.state.phoneNumbers];
-                              tempNumbers.push(m.state.author)
+                              tempNumbers.push(identifier)
                               this.setState( { phoneNumbers: tempNumbers, loadingState: 'ready'})
                           }
 
@@ -29,7 +34,7 @@ export class Conversation extends React.Component {
                       })
                   })
                 .catch(err => {
-                    console.error("Couldn't fetch messages IMPLEMENT RETRY", err);
+                    console.error("Couldn't fetch participants IMPLEMENT RETRY", err);
                     this.setState({ loadingState: "failed" });
                 });
         }
@@ -37,7 +42,7 @@ export class Conversation extends React.Component {
 
     componentDidMount = () => {
         if (this.state.conversation) {
-            this.loadMessagesFor(this.state.conversation);
+            this.loadParticipantsFor(this.state.conversation);
         }
     };
 
@@ -47,7 +52,7 @@ export class Conversation extends React.Component {
         if (match) {
             return ['(', match[2], ') ', match[3], '-', match[4]].join('');
         }
-        return null;
+        return phoneNumberString;
     };
 
     renderPhoneNumbers = function(phoneNumbers) {

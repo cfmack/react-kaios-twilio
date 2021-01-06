@@ -12,3 +12,8 @@ body,
   overflow: hidden;
   background-color: #E1E2E1 !important;
 }
+ul {
+  list-style-type:none;
+  padding-inline-start: 0;
+  padding-inline-end: 10px;
+}

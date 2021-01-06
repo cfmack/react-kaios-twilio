@@ -4,8 +4,10 @@
   "private": true,
   "dependencies": {
     "@twilio/conversations": "^1.1.0",
-    "antd": "^4.8.0",
+    "antd": "^4.8.5",
     "dotenv": "^8.2.0",
+    "elliptic": "^6.5.3",
+    "prop-types": "^15.7.2",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-promise": "^3.0.2",
